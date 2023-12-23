@@ -95,16 +95,10 @@
 
            MOVE CONTADOR-ARCHIVO            TO NUMERO-ARCHIVO
 
-           STRING NOMBRE-INICIAL,
-                  NUMERO-ARCHIVO,
-                  ".",
-                  EXTENCION-ARCHIVO,
-                  DELIMITED BY SPACE
-               INTO NOMBRE-ARCHIVO
-           END-STRING
+           PERFORM 520-NOMBRAR-ARCHIVO
 
-           OPEN  INPUT ARCHIVO-LECTURA
-                OUTPUT ARCHIVO-SALIDA
+           OPEN INPUT  ARCHIVO-LECTURA
+               OUTPUT  ARCHIVO-SALIDA
 
            PERFORM 500-LEER-REGISTRO
            .
@@ -152,19 +146,24 @@
            CLOSE ARCHIVO-SALIDA
 
            ADD +01                          TO CONTADOR-ARCHIVO
-           MOVE CONTADOR-ARCHIVO            TO NUMERO-ARCHIVO
-           STRING NOMBRE-INICIAL,
-                  NUMERO-ARCHIVO,
-                  ".",
-                  EXTENCION-ARCHIVO,
-                  DELIMITED BY SPACE
-               INTO NOMBRE-ARCHIVO
-           END-STRING
+           PERFORM 520-NOMBRAR-ARCHIVO
 
            OPEN OUTPUT ARCHIVO-SALIDA
 
 
            MOVE 00                          TO CONTADOR-REGS
+           .
+
+       520-NOMBRAR-ARCHIVO.
+           MOVE   CONTADOR-ARCHIVO          TO NUMERO-ARCHIVO
+
+           STRING NOMBRE-INICIAL,
+                  NUMERO-ARCHIVO,
+                  ".",
+                  EXTENCION-ARCHIVO,
+                  DELIMITED BY SPACE
+             INTO NOMBRE-ARCHIVO
+           END-STRING
            .
 
        990-PRESENTAR-CIFRAS-CONTROL.
